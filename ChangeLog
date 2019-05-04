@@ -1,3 +1,22 @@
 2019-05-01  Justin Collier  <jpcxist@gmail.com>
 
 	* cpputils: Version 0.1.0 released.
+
+2019-05-04	Justin Collier	<jpcxist@gmail.com>
+
+	* cpputils: Changed namespace configuration.
+
+	* src/ccutl/maps/maps.h: Included type_traits. Changed function naming scheme.
+	(has, get): Improved template specialization for const char * cases.
+
+	* src/ccutl/testgroup.h: Created file.
+
+	* test/src/ccutl_tests/maps/test.cc: Created file.
+
+	* test/src/ccutl_tests/maps/test.h: Created file.
+
+	* Makefile: Created Makefile for testing ("make test").
+
+	* Doxyfile: Created doxygen configuration.
+
+	* README.md: Updated README to reflect changes for 0.2.0.
