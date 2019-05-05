@@ -20,3 +20,22 @@
 	* Doxyfile: Created doxygen configuration.
 
 	* README.md: Updated README to reflect changes for 0.2.0.
+
+2019-05-05	Justin Collier	<jpcxist@gmail.com>
+
+	*	cpputils: Changed folder structure; moved namespace-only header files out of namespace directories.
+	src/ccutl/maps/maps.h -> src/ccutl/maps.h
+
+	* src/ccutl/maps.h: Canged template specialization to parameter specialization.
+
+	* src/ccutl/types.h: Created file.
+
+	* src/ccutl_tests/maps/test.cc: Added tests for ccutl::maps::has.
+
+	* src/ccutl_tests/maps/test.h: Added test variables for ccutl::maps::has.
+
+	* Makefile: Fixed make test error.
+
+	* README.md: Updated README to reflect changes for 0.3.0.
+	Added code ticks to section headers.
+	"aid in" -> "facilitate"

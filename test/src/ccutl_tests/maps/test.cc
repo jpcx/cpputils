@@ -16,10 +16,10 @@
  * @file ccutl_tests/maps/test.cc
  * @author Justin Collier (jpcxist@gmail.com)
  * @brief Tests the functions in ccutl/maps/maps.h.
- * @version 0.1.0
+ * @version 0.2.0
  * @since cpputils 0.2.0
  * @date created 2019-05-02
- * @date modified 2019-05-04
+ * @date modified 2019-05-05
  * @copyright Copyright (c) 2019 Justin Collier
  */
 
@@ -27,11 +27,116 @@
 
 #include <map>
 
-#include "ccutl/maps/maps.h"
+#include "ccutl/maps.h"
 #include "ccutl/tests/testgroup.h"
 
 namespace ccutl_tests {
 namespace maps {
+
+void has() {
+  using ccutl::maps::has;
+  using ccutl::tests::TestGroup;
+  auto test_fundamental_has = TestGroup("ccutl::maps::has | fundamental maps");
+  test_fundamental_has.assert_value(
+      "has from 1D fundamental map returns the correct value",
+      [=]() { return has(fundamental_map_1D_has, 32); }, true);
+  test_fundamental_has.assert_value(
+      "has from 2D fundamental map returns the correct value",
+      [=]() { return has(fundamental_map_2D_has, 321, 1.23f); }, true);
+  test_fundamental_has.assert_value(
+      "invalid has from 1D fundamental map returns the correct value",
+      [=]() { return has(fundamental_map_1D_has, 404); }, false);
+  test_fundamental_has.assert_value(
+      "invalid has from 2D fundamental map returns the correct value with an "
+      "invalid parent key",
+      [=]() { return has(fundamental_map_2D_has, 404, 1.23f); }, false);
+  test_fundamental_has.assert_value(
+      "invalid has from 2D fundamental map returns the correct value with an "
+      "invalid child key",
+      [=]() { return has(fundamental_map_2D_has, 321, 4.04f); }, false);
+  test_fundamental_has.assert_value(
+      "invalid has from 2D fundamental map returns the correct value when both "
+      "keys are invalid",
+      [=]() { return has(fundamental_map_2D_has, 404, 4.04f); }, false);
+  test_fundamental_has.end();
+
+  auto test_object_has = TestGroup("ccutl::maps::has | object maps");
+  test_object_has.assert_value(
+      "has from 1D object map returns the correct value",
+      [=]() { return has(object_map_1D_has, obj_key_A1); }, true);
+  test_object_has.assert_value(
+      "has from 2D object map returns the correct value",
+      [=]() { return has(object_map_2D_has, obj_key_A1, obj_key_B1); }, true);
+  test_object_has.assert_value(
+      "invalid has from 1D object map returns the correct value",
+      [=]() { return has(object_map_1D_has, obj_key_A2); }, false);
+  test_object_has.assert_value(
+      "invalid has from 2D object map returns the correct value with an "
+      "invalid parent key",
+      [=]() { return has(object_map_2D_has, obj_key_A2, obj_key_B1); }, false);
+  test_object_has.assert_value(
+      "invalid has from 2D object map returns the correct value with an "
+      "invalid child key",
+      [=]() { return has(object_map_2D_has, obj_key_A1, obj_key_B2); }, false);
+  test_object_has.assert_value(
+      "invalid has from 2D object map returns the correct value when both "
+      "keys are invalid",
+      [=]() { return has(object_map_2D_has, obj_key_A2, obj_key_B2); }, false);
+  test_object_has.end();
+
+  auto test_pointer_has = TestGroup("ccutl::maps::has | pointer maps");
+  test_pointer_has.assert_value(
+      "has from 1D pointer map returns the correct value",
+      [=]() { return has(pointer_map_1D_has, &obj_key_A1); }, true);
+  test_pointer_has.assert_value(
+      "has from 2D pointer map returns the correct value",
+      [=]() { return has(pointer_map_2D_has, &obj_key_A1, &obj_key_B1); },
+      true);
+  test_pointer_has.assert_value(
+      "invalid has from 1D pointer map returns the correct value",
+      [=]() { return has(pointer_map_1D_has, &obj_key_A2); }, false);
+  test_pointer_has.assert_value(
+      "invalid has from 2D pointer map returns the correct value with an "
+      "invalid parent key",
+      [=]() { return has(pointer_map_2D_has, &obj_key_A2, &obj_key_B1); },
+      false);
+  test_pointer_has.assert_value(
+      "invalid has from 2D pointer map returns the correct value with an "
+      "invalid child key",
+      [=]() { return has(pointer_map_2D_has, &obj_key_A1, &obj_key_B2); },
+      false);
+  test_pointer_has.assert_value(
+      "invalid has from 2D pointer map returns the correct value when both "
+      "keys are invalid",
+      [=]() { return has(pointer_map_2D_has, &obj_key_A2, &obj_key_B2); },
+      false);
+  test_pointer_has.end();
+
+  auto test_ccharp_has = TestGroup("ccutl::maps::has | const char * maps");
+  test_ccharp_has.assert_value(
+      "has from 1D const char * map returns the correct value",
+      [=]() { return has(ccharp_map_1D_has, "foo"); }, true);
+  test_ccharp_has.assert_value(
+      "has from 2D const char * map returns the correct value",
+      [=]() { return has(ccharp_map_2D_has, "foo", "bar"); }, true);
+  test_ccharp_has.assert_value(
+      "invalid has from 1D const char * map returns the correct value",
+      [=]() { return has(ccharp_map_1D_has, "qux"); }, false);
+  test_ccharp_has.assert_value(
+      "invalid has from 2D const char * map returns the correct value with an "
+      "invalid parent key",
+      [=]() { return has(ccharp_map_2D_has, "qux", "bar"); }, false);
+  test_ccharp_has.assert_value(
+      "invalid has from 2D const char * map returns the correct value with an "
+      "invalid child key",
+      [=]() { return has(ccharp_map_2D_has, "foo", "quz"); }, false);
+  test_ccharp_has.assert_value(
+      "invalid has from 2D const char * map returns the correct value when "
+      "both "
+      "keys are invalid",
+      [=]() { return has(ccharp_map_2D_has, "qux", "quz"); }, false);
+  test_ccharp_has.end();
+}
 
 void get() {
   using ccutl::maps::get;
@@ -483,6 +588,7 @@ void del() {
 }
 
 void run_tests() {
+  has();
   get();
   set();
   del();
