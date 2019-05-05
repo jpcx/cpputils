@@ -6,10 +6,10 @@ C_FLAGS 	:= -std=c++17 \
 					 	 -Wall     	\
 					 	 -Wextra
 
+LIB_INC		:= -Isrc
 TEST_BIN	:= test/bin/test
 TEST_SRC	:= test/src/*.cc                  \
 						 test/src/ccutl_tests/maps/*.cc
-LIB_INC		:= -Isrc
 TEST_INC  := -Itest/src
 
 all:
@@ -17,7 +17,9 @@ all:
 clean:
 	$(RM) $(TEST_BIN)
 
-test: $(TEST_SRC)
-	make clean
-	$(CC) $(C_FLAGS) $(LIB_INC) $(TEST_INC) $^ -o $(TEST_BIN)
+test: clean
+	make $(TEST_BIN)
 	./$(TEST_BIN)
+
+$(TEST_BIN): $(TEST_SRC)
+	$(CC) $(C_FLAGS) $(LIB_INC) $(TEST_INC) $^ -o $@

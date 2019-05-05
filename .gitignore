@@ -1,2 +1,5 @@
 # VSCode settings directory
 .vscode
+
+# Testing binary
+bin/test

@@ -18,10 +18,10 @@
  * @file ccutl_tests/maps/test.h
  * @author Justin Collier (jpcxist@gmail.com)
  * @brief Tests the functions in ccutl/maps/maps.h.
- * @version 0.1.0
+ * @version 0.2.0
  * @since cpputils 0.2.0
  * @date created 2019-05-02
- * @date modified 2019-05-03
+ * @date modified 2019-05-05
  * @copyright Copyright (c) 2019 Justin Collier
  */
 
@@ -40,10 +40,13 @@ static std::vector<std::map<int, int>> obj_key_B2 = {{{32, 42}}};
 
 // ---------------------------- Fundamental Maps ---------------------------- //
 // 1-Dimensional
+static std::map<int, float> fundamental_map_1D_has = {{32, 3.14f}};
 static std::map<int, float> fundamental_map_1D_get = {{32, 3.14f}};
 static std::map<int, float> fundamental_map_1D_set = {{32, 3.14f}};
 static std::map<int, float> fundamental_map_1D_del = {{32, 3.14f}};
 // 2-Dimensional
+static std::map<int, std::map<float, double>> fundamental_map_2D_has = {
+    {321, {{1.23f, 28323.15}}}};
 static std::map<int, std::map<float, double>> fundamental_map_2D_get = {
     {321, {{1.23f, 28323.15}}}};
 static std::map<int, std::map<float, double>> fundamental_map_2D_set = {
@@ -53,6 +56,8 @@ static std::map<int, std::map<float, double>> fundamental_map_2D_del = {
 
 // ------------------------------ Object Maps ------------------------------- //
 // 1-Dimensional
+static std::map<std::vector<std::string>, float> object_map_1D_has = {
+    {obj_key_A1, 3.14f}};
 static std::map<std::vector<std::string>, float> object_map_1D_get = {
     {obj_key_A1, 3.14f}};
 static std::map<std::vector<std::string>, float> object_map_1D_set = {
@@ -60,6 +65,9 @@ static std::map<std::vector<std::string>, float> object_map_1D_set = {
 static std::map<std::vector<std::string>, float> object_map_1D_del = {
     {obj_key_A1, 3.14f}};
 // 2-Dimensional
+static std::map<std::vector<std::string>,
+                std::map<std::vector<std::map<int, int>>, float>>
+    object_map_2D_has = {{obj_key_A1, {{obj_key_B1, 3.1415f}}}};
 static std::map<std::vector<std::string>,
                 std::map<std::vector<std::map<int, int>>, float>>
     object_map_2D_get = {{obj_key_A1, {{obj_key_B1, 3.1415f}}}};
@@ -72,6 +80,8 @@ static std::map<std::vector<std::string>,
 
 // ------------------------------ Pointer Maps ------------------------------ //
 // 1-Dimensional
+static std::map<std::vector<std::string> *, float> pointer_map_1D_has = {
+    {&obj_key_A1, 3.14f}};
 static std::map<std::vector<std::string> *, float> pointer_map_1D_get = {
     {&obj_key_A1, 3.14f}};
 static std::map<std::vector<std::string> *, float> pointer_map_1D_set = {
@@ -79,6 +89,9 @@ static std::map<std::vector<std::string> *, float> pointer_map_1D_set = {
 static std::map<std::vector<std::string> *, float> pointer_map_1D_del = {
     {&obj_key_A1, 3.14f}};
 // 2-Dimensional
+static std::map<std::vector<std::string> *,
+                std::map<std::vector<std::map<int, int>> *, float>>
+    pointer_map_2D_has = {{&obj_key_A1, {{&obj_key_B1, 3.1415f}}}};
 static std::map<std::vector<std::string> *,
                 std::map<std::vector<std::map<int, int>> *, float>>
     pointer_map_2D_get = {{&obj_key_A1, {{&obj_key_B1, 3.1415f}}}};
@@ -91,10 +104,13 @@ static std::map<std::vector<std::string> *,
 
 // --------------------------- const char * maps ---------------------------- //
 // 1-Dimensional
+static std::map<const char *, float> ccharp_map_1D_has = {{"foo", 3.14f}};
 static std::map<const char *, float> ccharp_map_1D_get = {{"foo", 3.14f}};
 static std::map<const char *, float> ccharp_map_1D_set = {{"foo", 3.14f}};
 static std::map<const char *, float> ccharp_map_1D_del = {{"foo", 3.14f}};
 // 2-Dimensional
+static std::map<const char *, std::map<const char *, float>> ccharp_map_2D_has =
+    {{"foo", {{"bar", 3.1415f}}}};
 static std::map<const char *, std::map<const char *, float>> ccharp_map_2D_get =
     {{"foo", {{"bar", 3.1415f}}}};
 static std::map<const char *, std::map<const char *, float>> ccharp_map_2D_set =
@@ -102,6 +118,7 @@ static std::map<const char *, std::map<const char *, float>> ccharp_map_2D_set =
 static std::map<const char *, std::map<const char *, float>> ccharp_map_2D_del =
     {{"foo", {{"bar", 3.1415f}}}};
 
+void has();
 void get();
 void set();
 void del();

@@ -1,17 +1,17 @@
-# cpputils 0.2.0
+# cpputils 0.3.0
 
-Provides a collection of header files that aid in C++ development.
+Provides a collection of header files that facilitate C++ development.
 
-Feel free to include any file you'd like into your project.
+Feel free to include any file you'd like into your projects.
 All functions are namespaced under "ccutl".
 
 ## Documentation
 
-### ccutl::maps (ccutl/maps/maps.h) 0.2.0
+### `ccutl::maps` (ccutl/maps.h) 0.2.1
 
 Provides a collection of template functions for working with std::maps.
 
-#### ccutl::maps::has(std::map<...> target, T_Key ...key) -> bool
+#### `ccutl::maps::has(std::map<...> target, T_Key ...key)` -> `bool`
 
 Returns true if a map has an established key path.
 
@@ -25,7 +25,7 @@ ccutl::maps::has(example, "foo", "bar");
 ccutl::maps::has(example, "foo", "baz");
 ```
 
-#### ccutl::maps::get(std::map<...> target, T_Key ...key) -> T_Val
+#### `ccutl::maps::get(std::map<...> target, T_Key ...key)` -> `T_Val`
 
 Gets a value from a nested map using a key path.
 
@@ -42,7 +42,7 @@ ccutl::maps::get(example, "foo", "bar");
 ccutl::maps::get(example, "foo", "baz");
 ```
 
-#### ccutl::maps::set(std::map<...> *target, T_Key ...key, T_Val value) -> void
+#### `ccutl::maps::set(std::map<...> *target, T_Key ...key, T_Val value)` -> `void`
 
 Sets a value in a nested map given a key path and value.
 The last argument provided will be the value.
@@ -55,7 +55,7 @@ std::map<...> example = {{"foo", {{"bar", "baz"}}}};
 ccutl::maps::set(&example, "foo", "bar", "qux");
 ```
 
-#### ccutl::maps::del(std::map<...> *target, T_Key ...key) -> void
+#### `ccutl::maps::del(std::map<...> *target, T_Key ...key)` -> `void`
 
 Deletes a key from a map given a key path.
 
@@ -67,25 +67,33 @@ std::map<...> example = {{"foo", {{"bar", "baz"}, {"qux", "quz"}}}};
 ccutl::maps::del(&example, "foo", "qux"");
 ```
 
-### ccutl::tests::TestGroup (ccutl/tests/testgroup.h) 0.1.0
+### `ccutl::tests::TestGroup` (ccutl/tests/testgroup.h) 0.1.0
 
 Provides a very basic framework for unit testing.
 
-#### TestGroup(std::string title) -> TestGroup
+#### `TestGroup(std::string title)` -> `TestGroup`
 
 Creates a new test group. Announces the title to stdout.
 
-#### TestGroup::assert_value(std::string description, T_Lambda test, T_Value value) -> void
+#### `TestGroup::assert_value(std::string description, T_Lambda test, T_Value value)` -> `void`
 
 Asserts that the execution of a provided lambda function returns the expected value.
 
-#### TestGroup::assert_throws(std::string description, T_Lambda test, T_Error err) -> void
+#### `TestGroup::assert_throws(std::string description, T_Lambda test, T_Error err)` -> `void`
 
 Asserts that the execution of a provided lambda function throws the expected error.
 
-#### TestGroup::end() -> void
+#### `TestGroup::end()` -> `void`
 
 Logs a bottom border to stdout.
+
+### `ccutl::types` (ccutl/types.h) 0.1.0
+
+Provides various type-related templates.
+
+#### `typename ccutl::types::const_ref_or_v<T>`
+
+Wraps an std::conditional type that is a `const T&` if T is an object or `const T` if T is a fundamental value or pointer.
 
 ## Testing
 
