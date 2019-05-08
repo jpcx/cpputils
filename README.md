@@ -1,17 +1,14 @@
-# cpputils 0.3.0
+# cpputils 0.4.0
 
 Provides a collection of header files that facilitate C++ development.
 
-Feel free to include any file you'd like into your projects.
-All functions are namespaced under "ccutl".
-
 ## Documentation
 
-### `ccutl::maps` (ccutl/maps.h) 0.2.1
+### `ccutl::maps` (ccutl/maps/maps.h) 0.3.0
 
 Provides a collection of template functions for working with std::maps.
 
-#### `ccutl::maps::has(std::map<...> target, T_Key ...key)` -> `bool`
+#### `ccutl::maps::has(std::map<...> target, ...T_Key key)` -> `bool`
 
 Returns true if a map has an established key path.
 
@@ -25,7 +22,7 @@ ccutl::maps::has(example, "foo", "bar");
 ccutl::maps::has(example, "foo", "baz");
 ```
 
-#### `ccutl::maps::get(std::map<...> target, T_Key ...key)` -> `T_Val`
+#### `ccutl::maps::get(std::map<...> target, ...T_Key key)` -> `T_Val`
 
 Gets a value from a nested map using a key path.
 
@@ -42,7 +39,7 @@ ccutl::maps::get(example, "foo", "bar");
 ccutl::maps::get(example, "foo", "baz");
 ```
 
-#### `ccutl::maps::set(std::map<...> *target, T_Key ...key, T_Val value)` -> `void`
+#### `ccutl::maps::set(std::map<...> *target, ...T_Key key, T_Val value)` -> `void`
 
 Sets a value in a nested map given a key path and value.
 The last argument provided will be the value.
@@ -55,7 +52,7 @@ std::map<...> example = {{"foo", {{"bar", "baz"}}}};
 ccutl::maps::set(&example, "foo", "bar", "qux");
 ```
 
-#### `ccutl::maps::del(std::map<...> *target, T_Key ...key)` -> `void`
+#### `ccutl::maps::del(std::map<...> *target, ...T_Key key)` -> `void`
 
 Deletes a key from a map given a key path.
 
@@ -65,6 +62,17 @@ Example:
 std::map<...> example = {{"foo", {{"bar", "baz"}, {"qux", "quz"}}}};
 // example is now: {{"foo", {{"bar", "baz"}}}};
 ccutl::maps::del(&example, "foo", "qux"");
+```
+
+#### `ccutl::maps::create(...T_Key key, T_Val value)` -> `std::map<...>`
+
+Creates a new map given a key path and a value.
+
+Example:
+
+```c++
+// std::map<const char *, std::map<const char *, const char *>> map = {{ "foo", {{"bar", "baz"}} }};
+auto map = ccutl::maps::create("foo", "bar", "baz");
 ```
 
 ### `ccutl::tests::TestGroup` (ccutl/tests/testgroup.h) 0.1.0
@@ -87,13 +95,13 @@ Asserts that the execution of a provided lambda function throws the expected err
 
 Logs a bottom border to stdout.
 
-### `ccutl::types` (ccutl/types.h) 0.1.0
+### `ccutl::types` (ccutl/types/types.h) 0.2.0
 
 Provides various type-related templates.
 
-#### `typename ccutl::types::const_ref_or_v<T>`
+#### `typename ccutl::types::const_copyable_t<T>`
 
-Wraps an std::conditional type that is a `const T&` if T is an object or `const T` if T is a fundamental value or pointer.
+Wrapper for std::conditional that is a `const T` if T is a trivially copyable type or `const T&` if T is a fundamental value or pointer.
 
 ## Testing
 
