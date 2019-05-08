@@ -18,10 +18,10 @@
  * @file ccutl/types/types.h
  * @author Justin Collier (jpcxist@gmail.com)
  * @brief Provides various type-related templates.
- * @version 0.1.0
+ * @version 0.2.0
  * @since cpputils 0.3.0
  * @date created 2019-05-05
- * @date modified 2019-05-05
+ * @date modified 2019-05-07
  * @copyright Copyright (c) 2019 Justin Collier
  */
 
@@ -31,10 +31,11 @@ namespace ccutl {
 namespace types {
 
 template <typename T>
-/** @brief Either const T& if T is an object or const T if T is a pointer or
-   fundamental value. */
-using const_ref_or_v = typename std::conditional_t<
-    !std::is_fundamental_v<T> && !std::is_pointer_v<T>, const T &, const T>;
+/** @brief Conditional type that is a const reference if the target type is not
+   trivially copyable or a const value if it is. */
+using const_copyable_t =
+    typename std::conditional_t<std::is_trivially_copyable_v<T>, const T,
+                                const T&>;
 
 }  // namespace types
 }  // namespace ccutl
