@@ -1,3 +1,8 @@
+2019-05-08	Justin Collier	<jpcxist@gmail.com>
+	* Makefile: Fixed spacing.
+	* README.md: Fixed ccutl::types::const_copyable_t description.
+	Bumped version to 0.4.1.
+
 2019-05-07	Justin Collier	<jpcxist@gmail.com>
 
 	* cpputils: Reverted directory structure change.
