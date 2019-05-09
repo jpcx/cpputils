@@ -1,4 +1,8 @@
 2019-05-08	Justin Collier	<jpcxist@gmail.com>
+	* Makefile: Fixed spacing, again. Moved to tabs.
+	* README.md: Bumped version to 0.4.2.
+
+2019-05-08	Justin Collier	<jpcxist@gmail.com>
 	* Makefile: Fixed spacing.
 	* README.md: Fixed ccutl::types::const_copyable_t description.
 	Bumped version to 0.4.1.
