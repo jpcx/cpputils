@@ -1,5 +1,3 @@
-VERSION		:=	0.2.0
-
 CC      	:= 	g++
 C_FLAGS   	:= 	-std=c++17	\
 	     		-g		\

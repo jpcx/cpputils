@@ -1,4 +1,8 @@
 2019-05-08	Justin Collier	<jpcxist@gmail.com>
+	* Makefile: Removed unused Makefile version variable.
+	* README.md: Bumped version to 0.4.3.
+
+2019-05-08	Justin Collier	<jpcxist@gmail.com>
 	* Makefile: Fixed spacing, again. Moved to tabs.
 	* README.md: Bumped version to 0.4.2.
 
