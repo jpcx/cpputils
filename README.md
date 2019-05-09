@@ -1,4 +1,4 @@
-# cpputils 0.4.2
+# cpputils 0.4.3
 
 Provides a collection of header files that facilitate C++ development.
 
