@@ -1,4 +1,4 @@
-# cpputils 0.4.0
+# cpputils 0.4.1
 
 Provides a collection of header files that facilitate C++ development.
 
@@ -101,7 +101,7 @@ Provides various type-related templates.
 
 #### `typename ccutl::types::const_copyable_t<T>`
 
-Wrapper for std::conditional that is a `const T` if T is a trivially copyable type or `const T&` if T is a fundamental value or pointer.
+Wrapper for std::conditional that is a `const T` if T is a trivially copyable type or `const T&` if not.
 
 ## Testing
 

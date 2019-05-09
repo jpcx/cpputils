@@ -1,14 +1,14 @@
-VERSION := 0.2.0
+VERSION   := 0.2.0
 
-CC				:= g++
-C_FLAGS 	:= -std=c++17 \
-					 	 -g		     	\
-					 	 -Wall     	\
-					 	 -Wextra
+CC        := g++
+C_FLAGS   := -std=c++17 \
+						 -g		     	\
+						 -Wall     	\
+						 -Wextra
 
-LIB_INC		:= -Isrc
-TEST_BIN	:= test/bin/test
-TEST_SRC	:= test/src/*.cc                  \
+LIB_INC   := -Isrc
+TEST_BIN  := test/bin/test
+TEST_SRC  := test/src/*.cc                  \
 						 test/src/ccutl_tests/maps/*.cc
 TEST_INC  := -Itest/src
 
