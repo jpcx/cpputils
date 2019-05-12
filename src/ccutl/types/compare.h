@@ -15,27 +15,39 @@
 */
 
 /**
- * @file ccutl/types/types.h
+ * @file ccutl/types/compare.h
  * @author Justin Collier (jpcxist@gmail.com)
- * @brief Provides various type definitions.
- * @version 0.2.1
- * @since cpputils 0.3.0
- * @date created 2019-05-05
+ * @brief Provides various type-comparison functions.
+ * @version 0.1.0
+ * @since cpputils 0.5.0
+ * @date created 2019-05-09
  * @date modified 2019-05-09
  * @copyright Copyright (c) 2019 Justin Collier
  */
 
+#include <cstring>
 #include <type_traits>
+
+#include "ccutl/types/checks.h"
 
 namespace ccutl {
 namespace types {
 
-template <typename T>
-/** @brief Conditional type that is a const reference if the target type is not
-   trivially copyable or a const value if it is. */
-using const_copyable_t =
-    typename std::conditional_t<std::is_trivially_copyable_v<T>, const T,
-                                const T &>;
+template <typename T_A, typename T_B>
+/** @brief Checks equality of two values based on type; uses strncmp if
+   necessary. */
+constexpr bool are_equal(const T_A a, const T_B b) {
+  if constexpr (std::is_same_v<T_A, T_B>) {
+    if constexpr (is_cst_char_p<T_A>) {
+      auto a_len = strlen(a);
+      return a_len == strlen(b) && strncmp(a, b, a_len) == 0;
+    } else {
+      return a == b;
+    }
+  } else {
+    return false;
+  }
+}
 
 }  // namespace types
 }  // namespace ccutl

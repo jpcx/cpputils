@@ -16,10 +16,10 @@
  * @file ccutl_tests/maps/test.cc
  * @author Justin Collier (jpcxist@gmail.com)
  * @brief Tests the functions of ccutl::maps.
- * @version 0.3.0
+ * @version 0.3.1
  * @since cpputils 0.2.0
  * @date created 2019-05-02
- * @date modified 2019-05-07
+ * @date modified 2019-05-11
  * @copyright Copyright (c) 2019 Justin Collier
  */
 
@@ -122,8 +122,6 @@ void two_dimensional_tests() {
 void run_tests() {
   one_dimensional_tests();
   two_dimensional_tests();
-  std::cout << "\033[1;32mAll tests completed successfully!\033[0m"
-            << std::endl;
 }
 
 }  // namespace maps

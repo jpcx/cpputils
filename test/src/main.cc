@@ -16,13 +16,19 @@
  * @file ccutl_tests/main.cc
  * @author Justin Collier (jpcxist@gmail.com)
  * @brief Triggers cpputils library testing functions.
- * @version 0.1.0
+ * @version 0.1.1
  * @since cpputils 0.2.0
  * @date created 2019-05-02
- * @date modified 2019-05-02
+ * @date modified 2019-05-11
  * @copyright Copyright (c) 2019 Justin Collier
  */
 
 #include "ccutl_tests/maps/test.h"
+#include "ccutl_tests/types/test.h"
 
-int main() { ccutl_tests::maps::run_tests(); }
+int main() {
+  ccutl_tests::types::run_tests();
+  ccutl_tests::maps::run_tests();
+  std::cout << "\033[1;32mAll tests completed successfully!\033[0m"
+            << std::endl;
+}

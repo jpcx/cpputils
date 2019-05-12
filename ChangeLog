@@ -1,3 +1,15 @@
+2019-05-11	Justin Collier	<jpcxist@gmail.com>
+	* src/tests/testgroup.h: Made member functions const members.
+	*	src/types/checks.h: Created file.
+	*	src/types/compare.h: Created file.
+	* src/types/convert.h: Created file.
+	*	src/types/types.h: Fixed documentation wording.
+	*	test/src/ccutl_tests/maps/test.cc: Removed "tests completed" message.
+	* test/src/ccutl_tests/types/test.cc: Added file.
+	* test/src/ccutl_tests/types/test.h: Added file.
+	* test/src/main.cc: Added test launcher for ccutl::types.
+	Moved "tests completed" message to this file.
+
 2019-05-08	Justin Collier	<jpcxist@gmail.com>
 	* Makefile: Removed unused Makefile version variable.
 	* README.md: Bumped version to 0.4.3.
