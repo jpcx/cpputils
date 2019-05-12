@@ -18,10 +18,10 @@
  * @file ccutl/tests/testgroup.h
  * @author Justin Collier (jpcxist@gmail.com)
  * @brief Provides a very basic framework for unit testing.
- * @version 0.1.0
+ * @version 0.1.1
  * @since cpputils 0.2.0
  * @date created 2019-05-02
- * @date modified 2019-05-04
+ * @date modified 2019-05-11
  * @copyright Copyright (c) 2019 Justin Collier
  */
 
@@ -36,18 +36,20 @@ namespace tests {
 /** @brief Defines a group of tests to be performed. */
 class TestGroup {
  private:
-  std::string ansi_red_(const std::string &text) {
+  std::string ansi_red_(const std::string &text) const {
     return "\033[1;31m" + text + "\033[0m";
   }
-  std::string ansi_green_(const std::string &text) {
+  std::string ansi_green_(const std::string &text) const {
     return "\033[1;32m" + text + "\033[0m";
   }
   std::string title_;
-  void init_test_(const std::string &description) {
+  void init_test_(const std::string &description) const {
     std::cout << description << "... ";
   }
-  void test_passed_() { std::cout << ansi_green_("Passed!") << std::endl; }
-  void test_failed_() {
+  void test_passed_() const {
+    std::cout << ansi_green_("Passed!") << std::endl;
+  }
+  void test_failed_() const {
     std::cout << ansi_red_("Failed!") << std::endl;
     throw;  // TODO: implement rest of testing
   }
@@ -63,7 +65,7 @@ class TestGroup {
   template <typename T_Lambda, typename T_Value>
   /** @brief Executes a lambda function and checks for expected return. */
   void assert_value(const std::string &description, const T_Lambda &test,
-                    const T_Value &value) {
+                    const T_Value &value) const {
     init_test_(description);
     T_Value result = test();
     if (value == result) {
@@ -76,7 +78,7 @@ class TestGroup {
   template <typename T_Lambda>
   /** @brief Executes a lambda function and checks for expected return. */
   void assert_value(const std::string &description, const T_Lambda &test,
-                    const char *value) {
+                    const char *value) const {
     init_test_(description);
     const char *result = test();
     if (strncmp(result, value, strlen(value)) == 0) {
@@ -89,7 +91,7 @@ class TestGroup {
   template <typename T_Lambda, typename T_Error>
   /** @brief Executes a lambda function and checks for expected throw. */
   void assert_throws(const std::string &description, const T_Lambda &test,
-                     const T_Error &err) {
+                     const T_Error &err) const {
     init_test_(description);
     try {
       test();
@@ -106,7 +108,7 @@ class TestGroup {
   template <typename T_Lambda>
   /** @brief Executes a lambda function and checks for expected throw. */
   void assert_throws(const std::string &description, const T_Lambda &test,
-                     const char *err) {
+                     const char *err) const {
     init_test_(description);
     try {
       test();
@@ -121,7 +123,7 @@ class TestGroup {
   }
 
   /** @brief Ends the testing suite by drawing a closing border. */
-  void end() {
+  void end() const {
     std::string border = "--------------------------------";
     for (auto it = title_.begin(); it != title_.end(); it++) {
       border.push_back('-');
