@@ -42,32 +42,32 @@ void log(T value,
 				 const std::optional<std::streamsize>& precision = std::nullopt);
 
 template <bool InsertEndLine = true, typename T = const char*,
-					std::enable_if_t<are_streamable_v<std::ostream, T>>* = nullptr>
+					std::enable_if_t<are_streamable_to_v<std::ostream, T>>* = nullptr>
 void log(const T& value = "");
 
 template <bool InsertEndLine = true, template <typename...> typename TContain,
 					typename T, typename TDelim = const char*,
-					std::enable_if_t<!are_streamable_v<std::ostream, TContain<T>> &&
-													 are_const_iterable_v<TContain<T>> &&
-													 are_floating_point_v<T> &&
-													 are_streamable_v<std::ostream, TDelim>>* = nullptr>
+					std::enable_if_t<
+							!are_streamable_to_v<std::ostream, TContain<T>> &&
+							are_const_iterable_v<TContain<T>> && are_floating_point_v<T> &&
+							are_streamable_to_v<std::ostream, TDelim>>* = nullptr>
 void log(const TContain<T>& value, const TDelim& delimiter = " ",
 				 const std::optional<std::streamsize>& precision = std::nullopt);
 
 template <
 		bool InsertEndLine = true, template <typename...> typename TContain,
 		typename T, typename TDelim = const char*,
-		std::enable_if_t<!are_streamable_v<std::ostream, TContain<T>> &&
+		std::enable_if_t<!are_streamable_to_v<std::ostream, TContain<T>> &&
 										 are_const_iterable_v<TContain<T>> &&
-										 are_streamable_v<std::ostream, T, TDelim>>* = nullptr>
+										 are_streamable_to_v<std::ostream, T, TDelim>>* = nullptr>
 void log(const TContain<T>& value, const TDelim& delimiter = " ");
 
 template <bool InsertEndLine = true, template <typename...> typename TRows,
 					template <typename...> typename TColumns, typename T,
 					typename TRowDelim = const char*, typename TColDelim = const char*,
 					std::enable_if_t<are_const_iterable_v<TRows<TColumns<T>>> &&
-													 are_streamable_v<std::ostream, T, TRowDelim,
-																						TColDelim>>* = nullptr>
+													 are_streamable_to_v<std::ostream, T, TRowDelim,
+																							 TColDelim>>* = nullptr>
 void log(const TRows<TColumns<T>>& value, const TRowDelim& row_delimiter = "",
 				 const TColDelim& col_delimiter = " ");
 
