@@ -1,5 +1,9 @@
 # VSCode settings directory
-.vscode
+.vscode/
 
-# Testing binary
-bin/test
+# Binaries
+bin/*
+
+# Build and Lib
+build
+lib/*

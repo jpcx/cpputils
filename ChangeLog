@@ -1,3 +1,29 @@
+2019-07-13	Justin Collier	<jpcxist@gmail.com>
+  * All files: Changed directory structure
+  Moved all public properties to ccutl namespace.
+  * tests/
+  Moved to gtest
+  * src/ccutl/tests: Deleted folder and functionality.
+	* src/ccutl/core/algorithm.h: Created file.
+	* src/ccutl/core/compare.h: Created file.
+	* src/ccutl/core/convert.h: Created file.
+	* src/ccutl/core/format.h: Created file.
+	* src/ccutl/core/macros.h: Created file.
+	* src/ccutl/core/maps.h: Created file.
+	* src/ccutl/core/math.h: Created file.
+	* src/ccutl/core/type_traits.h: Created file.
+	* src/ccutl/algorithm.h: Created file.
+	* src/ccutl/ccutl_all.h: Created file.
+	* src/ccutl/compare.h: Created file.
+	* src/ccutl/format.h: Created file.
+	* src/ccutl/io.h: Created file.
+	* src/ccutl/limits.h: Created file.
+	* src/ccutl/macros.h: Created file.
+	* src/ccutl/maps.h: Moved file.
+	* src/ccutl/math.h: Created file.
+	* src/ccutl/type_traits.h: Moved file.
+  Removed const_copyable_t. Added 39 Methods and types.
+
 2019-05-11	Justin Collier	<jpcxist@gmail.com>
 	* src/tests/testgroup.h: Made member functions const members.
 	*	src/types/checks.h: Created file.
